@@ -54,6 +54,21 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- This is for Validation -->
+		<dependency>
+    		<groupId>jakarta.validation</groupId>
+    		<artifactId>jakarta.validation-api</artifactId>
+		</dependency>
+		<dependency>
+    		<groupId>org.hibernate.validator</groupId>
+    		<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<!-- This is for ModelMapper -->
+		<dependency>
+    		<groupId>org.modelmapper</groupId>
+    		<artifactId>modelmapper</artifactId>
+    		<version>3.2.0</version> <!-- Check for latest version -->
+		</dependency>	
 	</dependencies>
 
 	<build>

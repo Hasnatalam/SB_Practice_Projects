@@ -6,7 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import lombok.Data;
+@Data
 @Entity
 @Table(name="Student222")
 public class Student {
@@ -15,7 +16,7 @@ public class Student {
 	private int id;
 	@Column(nullable = false,length = 30)
 	private String name;
-	@Column(nullable = false,length = 30)
+	@Column(nullable = false, length = 30)
 	private String department;
 	@Column(nullable = false, length = 50,unique = true)
 	private String email;
