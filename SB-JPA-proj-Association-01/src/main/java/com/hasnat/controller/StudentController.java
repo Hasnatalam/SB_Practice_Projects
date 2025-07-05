@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hasnat.dto.StudentDto;
-import com.hasnat.dto.StudentResponseDto;
+import com.hasnat.dto.StudentRequest;
+import com.hasnat.dto.StudentResponse;
 import com.hasnat.services.StudentServiceImpl;
 
 
@@ -25,7 +25,7 @@ public class StudentController {
 	}
 	
 	@PostMapping("/register")
-	public StudentResponseDto saveStudent(@RequestBody StudentDto studentDto) {
+	public StudentResponse saveStudent(@RequestBody StudentRequest studentDto) {
 		
 		System.out.println(studentDto.getName());
 		System.out.println(studentDto.getDepartment());

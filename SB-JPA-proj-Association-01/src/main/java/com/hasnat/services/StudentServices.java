@@ -1,9 +1,9 @@
 package com.hasnat.services;
 
-import com.hasnat.dto.StudentDto;
-import com.hasnat.dto.StudentResponseDto;
+import com.hasnat.dto.StudentRequest;
+import com.hasnat.dto.StudentResponse;
 
 public interface StudentServices {
 	public String healthCheck();
-	public StudentResponseDto registerStudent(StudentDto studentDto);
+	public StudentResponse registerStudent(StudentRequest studentRequest);
 }

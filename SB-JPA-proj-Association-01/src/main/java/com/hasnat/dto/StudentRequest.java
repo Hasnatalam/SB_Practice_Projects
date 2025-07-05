@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class StudentDto {
+public class StudentRequest {
 	
 	@NotBlank(message = "Name is required")
 	private String name;
@@ -16,5 +16,7 @@ public class StudentDto {
 
 	@NotBlank(message = "Email is required")
 	private String email;
+	
+	private AddressRequest address;
 
 }
