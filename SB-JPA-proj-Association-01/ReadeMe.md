@@ -97,13 +97,16 @@ List mapping example
 
 ---
 
+# @Builder
+
+---
+
 ## 📘 What is the Builder Pattern?
 
 The **Builder Pattern** is a **creational design pattern** used to **create complex objects step by step**, especially when the constructor has **many parameters**.
 
 ---
 
-# @Builder
 
 ## ✅ Why use Builder?
 
