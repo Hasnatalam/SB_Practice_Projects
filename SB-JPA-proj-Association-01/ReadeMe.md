@@ -175,7 +175,7 @@ public class Student {
 
 # Swageer
 
-Sure! Here's a **fresh and short note** on **Swagger (OpenAPI) Configuration using `@Configuration` class** in Spring Boot:
+
 
 ---
 
