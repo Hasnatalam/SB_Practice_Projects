@@ -17,5 +17,6 @@ public class StudentRequest {
 	private AddressRequest address;
 	
 	private DepartmentRequest department;
+	
 
 }

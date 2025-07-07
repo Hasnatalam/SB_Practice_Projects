@@ -1,5 +1,8 @@
 package com.hasnat.services;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.hasnat.dto.AddressResponse;
@@ -7,6 +10,7 @@ import com.hasnat.dto.DepartmentResponse;
 import com.hasnat.dto.StudentRequest;
 import com.hasnat.dto.StudentResponse;
 import com.hasnat.entity.Address;
+import com.hasnat.entity.Courses;
 import com.hasnat.entity.Department;
 import com.hasnat.entity.Student;
 import com.hasnat.repository.StudentRepository;
@@ -48,9 +52,18 @@ public class StudentServiceImpl implements StudentServices {
         		.title(studentRequest.getDepartment().getTitle())
         		.hod(studentRequest.getDepartment().getHod())
         		.build();
+        List<Courses> course = Arrays.asList(Courses.builder()
+        		.title("Math")
+        		.build(),Courses.builder()
+        		.title("Physics")
+        		.build(),Courses.builder()
+        		.title("Computer Science")
+        		.build());
+
 
         student.setAddress(address);  // Set the address to student
         student.setDepartment(department);
+        student.setCourses(course);
 
         // Save only the Student (cascade will save Address)
         Student savedStudent = studentRepository.save(student);
