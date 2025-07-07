@@ -11,12 +11,11 @@ public class StudentRequest {
 	@NotBlank(message = "Name is required")
 	private String name;
 
-	@NotBlank(message = "Department is required")
-	private String department;
-
 	@NotBlank(message = "Email is required")
 	private String email;
 	
 	private AddressRequest address;
+	
+	private DepartmentRequest department;
 
 }
