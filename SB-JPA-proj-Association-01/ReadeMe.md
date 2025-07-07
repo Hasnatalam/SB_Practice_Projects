@@ -258,3 +258,163 @@ Advance concepts of swagger
 * API grouping by tags
 * Hiding specific endpoints
 
+
+
+# 📘 One-to-One Mapping in JPA (with Table Structure)
+
+---
+
+## 🔹 What is One-to-One Mapping?
+
+One-to-One mapping means **one record in one table is associated with one record in another table**.
+
+🧠 Example:
+
+- One `Student` has one `Address`.
+- One `Person` has one `Passport`.
+
+---
+
+## ✅ 1. Unidirectional One-to-One Mapping
+
+> Only one entity is aware of the relationship.
+> 
+
+### 🧾 Example: `Student` → `Address`
+
+### 🔸 Entity Classes
+
+```java
+@Entity
+public class Student {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String name;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id") // Foreign key
+    private Address address;
+}
+
+```
+
+```java
+@Entity
+public class Address {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String city;
+    private String state;
+}
+
+```
+
+### 🗃️ Table Structure
+
+### `student` table:
+
+| id | name | address_id (FK) |
+| --- | --- | --- |
+| 1 | Ram | 101 |
+
+### `address` table:
+
+| id | city | state |
+| --- | --- | --- |
+| 101 | Delhi | DL |
+
+### 💡 Key Points:
+
+- `address_id` is a **foreign key** in the `student` table.
+- `Address` doesn't know about `Student`.
+
+---
+
+## ✅ 2. Bidirectional One-to-One Mapping
+
+> Both entities are aware of the relationship.
+> 
+
+### 🧾 Example: `Student` ↔ `Address`
+
+### 🔸 Entity Classes
+
+```java
+@Entity
+public class Student {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String name;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
+}
+
+```
+
+```java
+@Entity
+public class Address {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String city;
+    private String state;
+
+    @OneToOne(mappedBy = "address") // refers to 'address' field in Student
+    private Student student;
+}
+
+```
+
+### 🗃️ Table Structure
+
+### `student` table:
+
+| id | name | address_id (FK) |
+| --- | --- | --- |
+| 1 | Ram | 101 |
+
+### `address` table:
+
+| id | city | state | student (no FK column) |
+| --- | --- | --- | --- |
+| 101 | Delhi | DL | - |
+
+### 💡 Key Points:
+
+- `student` table has foreign key `address_id`.
+- `mappedBy = "address"` tells JPA this is the **inverse side**.
+- `Address` table does **not** have a new column.
+
+---
+
+## 🔁 Summary Table: Uni vs Bi
+
+| Feature | Unidirectional | Bidirectional |
+| --- | --- | --- |
+| Navigation | One-way (`Student → Address`) | Two-way (`Student ↔ Address`) |
+| `@JoinColumn` | Present | Present in the owning side (`Student`) |
+| `mappedBy` | Not used | Used on inverse side (`Address`) |
+| Foreign Key | Exists in owning side | Exists only in owning side |
+| Simplicity | Simple | Slightly complex |
+
+---
+
+## 📍 Real-World Examples
+
+| Entity A | Entity B | Relationship |
+| --- | --- | --- |
+| Person | Passport | One-to-One |
+| Student | Address | One-to-One |
+| User | Profile | One-to-One |
+
+---
