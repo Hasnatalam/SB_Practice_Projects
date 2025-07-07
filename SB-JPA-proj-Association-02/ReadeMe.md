@@ -1,260 +1,165 @@
-# ModelMapper
-
-## What is ModelMapper?
-
-**ModelMapper** is a Java library used to **automatically map one object to another**, usually from:
-
-* DTO ➡️ Entity
-* Entity ➡️ DTO
-
-It reduces the need for manual getter-setter copying.
+📘 One-to-Many Mapping in JPA (with Table Structure)
 
 ---
 
-## ✅ Maven Dependency
+## 🔹 What is One-to-Many Mapping?
 
-```xml
-<dependency>
-    <groupId>org.modelmapper</groupId>
-    <artifactId>modelmapper</artifactId>
-    <version>3.1.1</version>
-</dependency>
-```
+One-to-Many means that **one record in one table is associated with many records in another table**.
 
----
+🧠 Example:
 
-## ✅ Spring Configuration
-
-```java
-@Configuration
-public class ModelMapperConfig {
-
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
-}
-```
+- One `Student` can have many `Courses`.
+- One `Department` can have many `Employees`.
 
 ---
 
-## ✅ Example Usage
+## ✅ 1. Unidirectional One-to-Many Mapping
 
-### 🔸 DTO class
+> Only one entity is aware of the relationship (typically the "one" side).
+> 
 
-```java
-public class StudentDto {
-    private Long id;
-    private String name;
-}
-```
+### 🧾 Example: `Department` → `Employee`
 
-### 🔸 Entity class
+### 🔸 Entity Classes
 
 ```java
 @Entity
-public class Student {
+public class Department {
     @Id
     @GeneratedValue
     private Long id;
+
     private String name;
-}
-```
 
-### 🔸 Mapping Example
-
-```java
-@Autowired
-private ModelMapper modelMapper;
-
-public StudentDto convertToDto(Student student) {
-    return modelMapper.map(student, StudentDto.class);
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id") // foreign key in employee table
+    private List<Employee> employees = new ArrayList<>();
 }
 
-public Student convertToEntity(StudentDto dto) {
-    return modelMapper.map(dto, Student.class);
-}
 ```
 
----
-
-## 🎯 Benefits
-
-* No need to manually set fields.
-* Clean and reusable mapping logic.
-* Supports nested mapping.
-
-
-
-
-advance concept of ModelMpper
-
-Mapping with nested objects
-
-Custom field mapping
-
-List mapping example
-
----
-
-# @Builder
-
----
-
-## 📘 What is the Builder Pattern?
-
-The **Builder Pattern** is a **creational design pattern** used to **create complex objects step by step**, especially when the constructor has **many parameters**.
-
----
-
-
-## ✅ Why use Builder?
-
-* Makes code **readable and maintainable**
-* Avoids **constructor telescoping** (many overloaded constructors)
-* Helps in creating **immutable objects**
-
----
-
-## ✅ Example
-
-### 🔸 Without Builder (Hard to read)
-
 ```java
-Student s = new Student(1L, "John", "Java", 25);
-```
-
-### 🔸 With Builder
-
-```java
-Student student = Student.builder()
-    .id(1L)
-    .name("John")
-    .course("Java")
-    .age(25)
-    .build();
-```
-
-### 🔸 Entity Class with Builder
-
-```java
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class Student {
+@Entity
+public class Employee {
+    @Id
+    @GeneratedValue
     private Long id;
+
     private String name;
-    private String course;
-    private int age;
+    private String position;
 }
+
 ```
 
-> 🛠️ `@Builder` is from **Lombok**, which auto-generates the builder methods.
+### 🗃️ Table Structure
+
+### `department` table:
+
+| id | name |
+| --- | --- |
+| 1 | HR |
+
+### `employee` table:
+
+| id | name | position | department_id (FK) |
+| --- | --- | --- | --- |
+| 1 | Alice | Manager | 1 |
+| 2 | Bob | Clerk | 1 |
+
+### 💡 Key Points:
+
+- `department_id` is a **foreign key** in the `employee` table.
+- Only `Department` has the list of `Employee`.
 
 ---
 
-## 📦 Maven for Lombok (if using builder)
+## ✅ 2. Bidirectional One-to-Many Mapping
 
-```xml
-<dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-    <version>1.18.28</version>
-    <scope>provided</scope>
-</dependency>
-```
+> Both entities are aware of the relationship.
+> 
 
----
+### 🧾 Example: `Department` ↔ `Employee`
 
-## ✅ Benefits
-
-* Improves **clarity** when setting multiple fields
-* Supports **optional fields**
-* Helps in creating **immutable objects** in a clean way
-
-
-
-
-# Swageer
-
-
-
----
-
-## 📘 Swagger with `@Configuration` Class (SpringDoc OpenAPI)
-
-**Swagger (OpenAPI)** is used to **generate interactive API documentation** for REST APIs.
-Instead of annotations or YAML, you can configure it **programmatically** using a Java class.
-
----
-
-## ✅ Setup
-
-### 🔹 Maven Dependency
-
-```xml
-<dependency>
-    <groupId>org.springdoc</groupId>
-    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-    <version>2.3.0</version>
-</dependency>
-```
-
----
-
-### 🔹 Swagger Configuration Class
+### 🔸 Entity Classes
 
 ```java
-@Configuration
-public class OpenAPIConfig {
+@Entity
+public class Department {
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    @Bean
-    public OpenAPI customOpenAPI() {
-        return new OpenAPI()
-            .info(new Info()
-                .title("Student API")
-                .version("1.0")
-                .description("API documentation for managing students")
-                .contact(new Contact()
-                    .name("Hasnat Alam")
-                    .email("hasnat@example.com"))
-                .license(new License()
-                    .name("Apache 2.0")
-                    .url("https://www.apache.org/licenses/LICENSE-2.0")));
-    }
+    private String name;
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private List<Employee> employees = new ArrayList<>();
 }
+
 ```
+
+```java
+@Entity
+public class Employee {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String name;
+    private String position;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id") // foreign key
+    private Department department;
+}
+
+```
+
+### 🗃️ Table Structure
+
+### `department` table:
+
+| id | name |
+| --- | --- |
+| 1 | HR |
+
+### `employee` table:
+
+| id | name | position | department_id (FK) |
+| --- | --- | --- | --- |
+| 1 | Alice | Manager | 1 |
+| 2 | Bob | Clerk | 1 |
+
+### 💡 Key Points:
+
+- Foreign key (`department_id`) is in the `employee` table.
+- `mappedBy = "department"` tells JPA that `Employee` owns the relationship.
 
 ---
 
-## ✅ Access Swagger UI
+## 🔁 Summary Table: Uni vs Bi
 
-Once the app runs, open:
-
-```
-http://localhost:8080/swagger-ui.html
-```
-
-or
-
-```
-http://localhost:8080/swagger-ui/index.html
-```
+| Feature | Unidirectional | Bidirectional |
+| --- | --- | --- |
+| Navigation | One-way (`Department → Employees`) | Two-way (`Department ↔ Employee`) |
+| `@JoinColumn` | On `@OneToMany` side | On `@ManyToOne` side |
+| `mappedBy` | Not used | Used on `@OneToMany` side |
+| Foreign Key Location | Child table (`employee`) | Child table (`employee`) |
+| Use case | Simple read-only | Needed for full CRUD relationship |
 
 ---
 
-## 🎯 Benefits of Java Config
+## 📍 Real-World Examples
 
-* Full control in code
-* Add dynamic values if needed
-* No need for YAML or annotations
+| Entity A | Entity B | Relationship |
+| --- | --- | --- |
+| Department | Employee | One-to-Many |
+| Author | Book | One-to-Many |
+| School | Student | One-to-Many |
 
 ---
 
-Advance concepts of swagger
+Let me know if you want:
 
-* JWT support
-* API grouping by tags
-* Hiding specific endpoints
-
+- ER diagram 📊
+- Working Spring Boot + MySQL example 💻
+- Reverse (Many-to-One) notes too 🔁
