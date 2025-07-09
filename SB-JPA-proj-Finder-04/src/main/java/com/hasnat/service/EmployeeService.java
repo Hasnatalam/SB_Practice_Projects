@@ -3,7 +3,6 @@ package com.hasnat.service;
 import java.util.List;
 
 import com.hasnat.dto.EmployeeResponse;
-import com.hasnat.entity.Employee;
 
 public interface EmployeeService {
 	public EmployeeResponse getEmployee(Long id);
