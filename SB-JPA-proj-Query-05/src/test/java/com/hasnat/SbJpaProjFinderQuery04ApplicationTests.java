@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SbJpaProjQuery05ApplicationTests {
+class SbJpaProjFinderQuery04ApplicationTests {
 
 	@Test
 	void contextLoads() {
