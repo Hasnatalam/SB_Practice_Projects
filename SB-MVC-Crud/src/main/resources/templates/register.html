@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Register - FoodieExpress</title>
+  <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+<body>
+  <div class="register-wrapper">
+    <div class="card">
+      <h2>Create account</h2>
+
+      <!-- If you're binding to a Thymeleaf model object (e.g. model.addAttribute("user", new User())),
+           uncomment th:object and use th:field for each input. -->
+      <form th:action="@{/registerUser}" method="post" autocomplete="on">
+        <div class="form-row">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" placeholder="Your full name" required maxlength="100">
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-row">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="Create a password" minlength="6" required>
+        </div>
+
+        <div class="form-row">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" pattern="[0-9+\-\s]{7,20}" required>
+        </div>
+
+        <button type="submit" class="btn">Register</button>
+
+        <p class="muted">Already have an account? <a th:href="@{/login}">Sign in</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

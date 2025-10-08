@@ -1,0 +1,58 @@
+/* ===== Global Styles ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* ===== Main Content ===== */
+.content {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.content h1 {
+    color: #2d89ef;
+}
+
+.content p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* ===== Buttons for CRUD Operations ===== */
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 8px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-create { background-color: #28a745; } /* Green */
+.btn-read   { background-color: #007bff; } /* Blue */
+.btn-update { background-color: #ffc107; color: black; } /* Yellow */
+.btn-delete { background-color: #dc3545; } /* Red */
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+/* ===== Footer ===== */
+.footer {
+    background-color: #2d89ef;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 40px;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CRUD App</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<section class="content">
+		<h1>Welcome to CRUD App</h1>
+		<p>Manage your records easily.</p>
+
+		<a th:href="@{/register}" class="btn btn-create">Register</a><br>
+		<a th:href="@{/allUser}" class="btn btn-read">Get All User </a><br>
+	</section>
+
+	<footer class="footer">
+		<p>© 2025 CRUD App | All Rights Reserved</p>
+	</footer>
+
+</body>
+</html>
