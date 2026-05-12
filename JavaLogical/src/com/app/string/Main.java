@@ -30,6 +30,7 @@ public class Main {
 		int count=0;
 		for(char c : str.toCharArray()) {
 			count ++;
+
 			
 		}
 		System.out.print(count);
@@ -102,4 +103,5 @@ public class Main {
 		else System.out.println("Not Anagram");
 		
 	}
+	
 }
