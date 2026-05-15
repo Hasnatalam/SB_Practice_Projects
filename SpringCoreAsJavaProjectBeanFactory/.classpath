@@ -6,10 +6,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Hasnat Alam/OneDrive/Desktop/JAVA/SpringBoot Practice_Projects/SpringCoreAsJavaProject/lib/spring-beans-5.3.39.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hasnat Alam/OneDrive/Desktop/JAVA/SpringBoot Practice_Projects/SpringCoreAsJavaProject/lib/spring-context-5.3.39.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hasnat Alam/OneDrive/Desktop/JAVA/SpringBoot Practice_Projects/SpringCoreAsJavaProject/lib/spring-core-5.3.39.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hasnat Alam/OneDrive/Desktop/JAVA/SpringBoot Practice_Projects/SpringCoreAsJavaProject/lib/spring-expression-5.3.39.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hasnat Alam/OneDrive/Desktop/JAVA/SpringBoot Practice_Projects/SpringCoreAsJavaProject/lib/spring-jcl-5.3.39.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hasnat Alam/OneDrive/Desktop/JAVA/JavaPractice/All JARs/Spring Jars/spring-beans-5.3.39.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hasnat Alam/OneDrive/Desktop/JAVA/JavaPractice/All JARs/Spring Jars/spring-context-5.3.39.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hasnat Alam/OneDrive/Desktop/JAVA/JavaPractice/All JARs/Spring Jars/spring-core-5.3.39.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hasnat Alam/OneDrive/Desktop/JAVA/JavaPractice/All JARs/Spring Jars/spring-expression-5.3.39.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hasnat Alam/OneDrive/Desktop/JAVA/JavaPractice/All JARs/Spring Jars/spring-jcl-5.3.39.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
