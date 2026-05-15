@@ -26,4 +26,16 @@ public class WishMessageGenerator {
 		}
 		return "Sleeping Time";
 	}
+	
+	public int getSum(int a,int b) {
+		return a+b;
+	}
+	
+	int sum=0;
+	public int getSumOfAll(int ...nums) {
+		for(int i=0;i<nums.length;i++) {
+			sum+=nums[i];
+		}
+		return sum;
+	}
 }
